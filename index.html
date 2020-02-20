@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+        @font-face {
+            font-family: 'Flatwheat';
+            src: url('assets/font/Flatwheat-Upright.ttf');
+        }
+        .overlay {
+            position: absolute;
+            left: 50%;
+            top: 40%;
+            width: 300px;
+            height: 200px;
+            background: aquamarine;
+            text-align: center;
+            padding-top: 5%;
+            vertical-align: middle;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <div style="font-family:Flatwheat; position: absolute; left:-1000px; visibility:hidden;">.</div>
+    <script type="text/javascript" src="phaser.min.js"></script>
+
+    <script type="text/javascript" src="Food.js"></script>
+    <script type="text/javascript" src="SpeedUp.js"></script>
+    <script type="text/javascript" src="Preload.js"></script>
+    <script type="text/javascript" src="GameScene.js"></script>
+    <script type="text/javascript" src="Title.js"></script>
+    <script type="text/javascript" src="Readme.js"></script>
+    <script type="text/javascript" src="Ending.js"></script>
+    
+</head>
+<body style="display:flex;flex-direction: row | row-reverse | column | column-reverse;justify-content:center;align-items:center;">
+    <div id="game">
+        <script class="game_canvas" type="text/javascript" src="game.js"></script>
+    </div>    
+    
+
+</body>
+</html>
