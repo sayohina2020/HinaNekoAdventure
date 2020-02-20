@@ -78,7 +78,8 @@ class GameScene extends Phaser.Scene {
         // Food
         this.foods_instance = this.add.group(); 
         // create food timer
-        this.time.addEvent({ delay: 800, callback: this.item_tick, callbackScope: this, loop: true });
+        this.time.delayedCall(800, this.item_tick, null, this);
+        // this.time.addEvent({ delay: 800, callback: this.item_tick, callbackScope: this, repeat: true });
 
         // Power ups
         this.powerUps = this.physics.add.group();
@@ -223,6 +224,9 @@ class GameScene extends Phaser.Scene {
 
     item_tick() {
         var food = new Food(this);
+        let interval = 800 * (this.timeCountdown/120);
+        interval = (interval < 3)? 3 : interval
+        this.time.delayedCall(interval, this.item_tick, null, this);
     }
 
     powerUp_tick() {

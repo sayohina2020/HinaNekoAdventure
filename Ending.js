@@ -15,11 +15,6 @@ class Ending extends Phaser.Scene {
         
     }
 
-    preload ()
-    {
-        this.load.html('nameform', 'loginform.html');
-    }
-
     create() {
         // background
         this.background = this.add.image(0,0,"background");

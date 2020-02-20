@@ -24,7 +24,7 @@ class Food extends Phaser.GameObjects.Sprite{
         if(this.y > 1000)
             this.destroy();
         else {
-            // this.body.velocity.y += 0.98;
+            this.body.velocity.y += 0.98 * 2;
         }
     }
 }
