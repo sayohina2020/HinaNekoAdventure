@@ -1,6 +1,6 @@
 var gameSetting = {
     time: 120,
-    playerInitSpeed: 150,
+    playerInitSpeed: 200,
     playerPowerfulTime_max: 5000,
     speedUpLifeTime: 5000,
     food_type: ["candy", "carrot", "chicken-leg", "burger_drink", "french-fries", "poop", "to-fu"],
