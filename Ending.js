@@ -112,7 +112,7 @@ class Ending extends Phaser.Scene {
         }).setOrigin(0.5, 0.5);
 
         // Rank button
-        this.rankBtn = this.add.sprite(config.width/2-200, 650, "leaderboard_dis");
+        //this.copyBtn = this.add.sprite(config.width/2-200, 650, "leaderboard_dis");
         // this.rankBtn.setInteractive();
         // this.rankBtn.on('pointerover', () => {
         //     this.rankBtn.setScale(1.2);
@@ -127,7 +127,7 @@ class Ending extends Phaser.Scene {
         // });
         
         // social buttons
-        this.fbBtn = this.add.image(config.width/2 - 100, 650, "fb");
+        this.fbBtn = this.add.image(config.width/2 - 150, 650, "fb");
         this.fbBtn.setInteractive();
         this.fbBtn.on('pointerover', () => {
             this.fbBtn.setScale(1.2);
@@ -139,7 +139,7 @@ class Ending extends Phaser.Scene {
             if(audioOn) this.buttonSFX.play();
             window.open("https://www.facebook.com/sharer/sharer.php?u=https://sayohina2020.github.io/HinaNekoAdventure/&quote=I%20got%20"+this.score+"%20points%20in%20Hina%20Neko's%20Adventure!" +encodeURIComponent("#氷川紗夜日菜生誕祭2020"), "_blank", "toolbar=0,status=0");
         });
-        this.twitterBtn = this.add.image(config.width/2, 650, "twitter");
+        this.twitterBtn = this.add.image(config.width/2-50, 650, "twitter");
         this.twitterBtn.setInteractive();
         this.twitterBtn.on('pointerover', () => {
             this.twitterBtn.setScale(1.2);
@@ -151,7 +151,7 @@ class Ending extends Phaser.Scene {
             if(audioOn) this.buttonSFX.play();
             window.open("https://twitter.com/intent/tweet?text=I%20got%20"+this.score+"%20points%20in%20Hina%20Neko's%20Adventure!"+encodeURIComponent('\nhttps://sayohina2020.github.io/HinaNekoAdventure/\n#氷川紗夜日菜生誕祭2020'), "_blank", "toolbar=0,status=0");
         });
-        this.plurkBtn = this.add.image(config.width/2 + 100, 650, "plurk");
+        this.plurkBtn = this.add.image(config.width/2 + 50, 650, "plurk");
         this.plurkBtn.setInteractive();
         this.plurkBtn.on('pointerover', () => {
             this.plurkBtn.setScale(1.2);
@@ -163,7 +163,7 @@ class Ending extends Phaser.Scene {
             if(audioOn) this.buttonSFX.play();
             window.open('http://www.plurk.com/m?qualifier=shares&content='.concat(encodeURIComponent('https://i.imgur.com/XY4Y38F.png\nhttps://sayohina2020.github.io/HinaNekoAdventure/')).concat(encodeURIComponent("\nI got "+this.score+" points in Hina neko's Adventure!\n#氷川紗夜日菜生誕祭2020")));
         });
-        this.weiboBtn = this.add.image(config.width/2 + 200, 650, "weibo");
+        this.weiboBtn = this.add.image(config.width/2 + 150, 650, "weibo");
         this.weiboBtn.setInteractive();
         this.weiboBtn.on('pointerover', () => {
             this.weiboBtn.setScale(1.2);
@@ -183,6 +183,12 @@ class Ending extends Phaser.Scene {
             boundsAlignH: "center", 
             boundsAlignV: "middle"
         }).setOrigin(0.5, 0.5);
+
+    }
+
+    copyText(text) {
+        
+        
     }
 
     // showInputField(scene) {

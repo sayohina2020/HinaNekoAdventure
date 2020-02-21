@@ -8,7 +8,7 @@ class Preload extends Phaser.Scene {
         // buttons img
         this.load.image("button", "assets/images/button_1.png");
         this.load.image("button_hover", "assets/images/button_2.png");
-        this.load.image("right", "assets/images/grey_sliderRight.png");
+        this.load.image("right", "assets/images/grey_sliderRight1.png");
 
         this.load.image("background", "assets/images/bg.png");
         this.load.image("instruction", "assets/images/instruction.png");
@@ -84,7 +84,7 @@ class Preload extends Phaser.Scene {
                 this.buttonSFX.play();
                 bgmObj.play({ loop: true, mute:!audioOn });
             }
-            this.scene.launch("title");
+            this.scene.launch("ending");
         });
 
         audioOn = true;
