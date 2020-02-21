@@ -41,9 +41,9 @@ class Readme extends Phaser.Scene {
         this.player.setScale(img_config.neko_scale);
 
         // back button
-        this.backBtn = this.add.sprite(config.width/2, config.height/2+138, "button").setOrigin(0.5, 0.5);
+        this.backBtn = this.add.sprite(config.width/2, config.height/2+168, "button").setOrigin(0.5, 0.5);
         this.backBtn.setInteractive();
-        this.backLabel = this.add.text(config.width/2, config.height/2+148, 'BACK', {
+        this.backLabel = this.add.text(config.width/2, config.height/2+178, 'BACK', {
             fontFamily: 'Flatwheat',
             fontSize: 50,
             align: 'center',

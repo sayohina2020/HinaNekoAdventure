@@ -1,6 +1,7 @@
 class Preload extends Phaser.Scene {
     constructor() {
         super("bootGame")
+        
     }
 
     preload() {
@@ -57,11 +58,9 @@ class Preload extends Phaser.Scene {
         this.load.audio("speedUp_SFX", "assets/sound/powerup03.ogg", "assets/sound/powerup03.mp3");
         this.load.audio("select", "assets/sound/cancel1.ogg", "assets/sound/cancel1.mp3");
         this.load.audio("bgm", "assets/sound/tam-n06loop.ogg", "assets/sound/tam-n06.mp3");
-        
     }
 
     create() {
-
         bgmObj = this.sound.add("bgm");
 
         this.buttonSFX = this.sound.add("select");
@@ -107,7 +106,6 @@ class Preload extends Phaser.Scene {
         });
 
         // hina neko animation
-
         this.anims.create({
             key: "neko_anim",
             frames: this.anims.generateFrameNumbers("neko", {

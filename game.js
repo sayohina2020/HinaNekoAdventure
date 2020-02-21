@@ -17,21 +17,20 @@ var img_config = {
 var config = {
     width: 720,
     height: 1280,
+    renderer: Phaser.CANVAS,
     backgroundColor: 0x000000,
-    parent: 'game',
     scene: [Preload, Title, Readme, GameScene, Ending],
     physics: {
         default: "arcade",
-        arcade: {
-            debug: false
+        arcade:{
+            debug: false,
+            debugShowVelocity: false
         }
-    },
-    dom: {
-        createContainer: true
     }
 }
-    
-var isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+
 var audioOn = true;
 var bgmObj;
+
 var game = new Phaser.Game(config);
+
