@@ -80,9 +80,9 @@ class Preload extends Phaser.Scene {
             this.btn.setColor('#3b6668');
         });
         this.btn.on('pointerup', () => {
+            bgmObj.play({ loop: true, mute:!audioOn });
             if(audioOn) {
                 this.buttonSFX.play();
-                bgmObj.play({ loop: true, mute:!audioOn });
             }
             this.scene.launch("title"); 
         });
