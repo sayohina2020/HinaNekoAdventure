@@ -112,22 +112,22 @@ class Ending extends Phaser.Scene {
         }).setOrigin(0.5, 0.5);
 
         // Rank button
-        //this.copyBtn = this.add.sprite(config.width/2-200, 650, "leaderboard_dis");
-        // this.rankBtn.setInteractive();
-        // this.rankBtn.on('pointerover', () => {
-        //     this.rankBtn.setScale(1.2);
-        // });
-        // this.rankBtn.on('pointerout', () => {
-        //     this.rankBtn.setScale(1.0);
-        // });
-        // this.rankBtn.on('pointerup', () => {
-        //     if(this.uploaded) return;
-        //     if(audioOn) this.buttonSFX.play();
-        //     this.showInputField();
-        // });
+        this.rankBtn = this.add.image(config.width/2-200, 650, "leaderboard");
+        this.rankBtn.setInteractive();
+        this.rankBtn.on('pointerover', () => {
+            this.rankBtn.setScale(1.2);
+        });
+        this.rankBtn.on('pointerout', () => {
+            this.rankBtn.setScale(1.0);
+        });
+        this.rankBtn.on('pointerup', () => {
+            if(this.uploaded) return;
+            if(audioOn) this.buttonSFX.play();
+            this.showInputField(this);
+        });
         
         // social buttons
-        this.fbBtn = this.add.image(config.width/2 - 150, 650, "fb");
+        this.fbBtn = this.add.image(config.width/2 - 100, 650, "fb");
         this.fbBtn.setInteractive();
         this.fbBtn.on('pointerover', () => {
             this.fbBtn.setScale(1.2);
@@ -139,7 +139,7 @@ class Ending extends Phaser.Scene {
             if(audioOn) this.buttonSFX.play();
             window.open("https://www.facebook.com/sharer/sharer.php?u=https://sayohina2020.github.io/HinaNekoAdventure/&quote=I%20got%20"+this.score+"%20points%20in%20Hina%20Neko's%20Adventure!" +encodeURIComponent("#氷川紗夜日菜生誕祭2020"), "_blank", "toolbar=0,status=0");
         });
-        this.twitterBtn = this.add.image(config.width/2-50, 650, "twitter");
+        this.twitterBtn = this.add.image(config.width/2, 650, "twitter");
         this.twitterBtn.setInteractive();
         this.twitterBtn.on('pointerover', () => {
             this.twitterBtn.setScale(1.2);
@@ -151,7 +151,7 @@ class Ending extends Phaser.Scene {
             if(audioOn) this.buttonSFX.play();
             window.open("https://twitter.com/intent/tweet?text=I%20got%20"+this.score+"%20points%20in%20Hina%20Neko's%20Adventure!"+encodeURIComponent('\nhttps://sayohina2020.github.io/HinaNekoAdventure/\n#氷川紗夜日菜生誕祭2020'), "_blank", "toolbar=0,status=0");
         });
-        this.plurkBtn = this.add.image(config.width/2 + 50, 650, "plurk");
+        this.plurkBtn = this.add.image(config.width/2 + 100, 650, "plurk");
         this.plurkBtn.setInteractive();
         this.plurkBtn.on('pointerover', () => {
             this.plurkBtn.setScale(1.2);
@@ -163,7 +163,7 @@ class Ending extends Phaser.Scene {
             if(audioOn) this.buttonSFX.play();
             window.open('http://www.plurk.com/m?qualifier=shares&content='.concat(encodeURIComponent('https://i.imgur.com/XY4Y38F.png\nhttps://sayohina2020.github.io/HinaNekoAdventure/')).concat(encodeURIComponent("\nI got "+this.score+" points in Hina neko's Adventure!\n#氷川紗夜日菜生誕祭2020")));
         });
-        this.weiboBtn = this.add.image(config.width/2 + 150, 650, "weibo");
+        this.weiboBtn = this.add.image(config.width/2 + 200, 650, "weibo");
         this.weiboBtn.setInteractive();
         this.weiboBtn.on('pointerover', () => {
             this.weiboBtn.setScale(1.2);
@@ -191,51 +191,71 @@ class Ending extends Phaser.Scene {
         
     }
 
-    // showInputField(scene) {
-    //     //var text = this.add.text(10, 10, 'Please login to play', { color: 'white', fontFamily: 'Arial', fontSize: '32px '});
-    //     var element = this.add.dom(config.width/2, -100).createFromCache('nameform');
-    //     element.setPerspective(800);
-    //     element.addListener('click');
-    //     element.on('click', function (event) {
-    //         if (event.target.name === 'loginButton')
-    //         {
-    //             var inputUsername = this.getChildByName('username');
-    //             //  Have they entered anything?
-    //             if (inputUsername.value !== '')
-    //             {
-    //                 // Set leaderboard btn disable
-    //                 this.scene.uploaded = true;
-    //                 this.scene.rankBtn.setTexture("leaderboard_dis");
-    //                 this.scene.rankBtn.disableInteractive();
-    //                 //  Turn off the click events
-    //                 this.removeListener('click');
-    //                 //  Tween the login form out
-    //                 this.scene.tweens.add({
-    //                     targets: element,
-    //                     y: config.height+200,
-    //                     duration: 3000,
-    //                     ease: 'Power3',
-    //                     onComplete: function ()
-    //                     {
-    //                         element.destroy();
-    //                     }
-    //                 });
+    showInputField(scene) {
+        //var text = this.add.text(10, 10, 'Please login to play', { color: 'white', fontFamily: 'Arial', fontSize: '32px '});
+        var element = scene.add.dom(config.width/2, -100).createFromCache("nameform");
+        element.setPerspective(800);
+        element.addListener('click');
+        element.on('click', function (event) {
+            if (event.target.name === 'loginButton')
+            {
+                var inputUsername = this.getChildByName('username');
+                //  Have they entered anything?
+                if (inputUsername.value !== '')
+                {
+                    // Set leaderboard btn disable
+                    this.scene.uploaded = true;
+                    this.scene.rankBtn.setTexture("leaderboard_dis");
+                    this.scene.rankBtn.disableInteractive();
 
-    //                 //  Populate the text with whatever they typed in as the username!
-    //                 //text.setText('Welcome ' + inputUsername.value);
-    //             }
-    //             else
-    //             {
-    //                 //  Flash the prompt
-    //                 this.scene.tweens.add({ targets: text, alpha: 0.1, duration: 200, ease: 'Power3', yoyo: true });
-    //             }
-    //         }
-    //     });
-    //     this.tweens.add({
-    //         targets: element,
-    //         y: 500,
-    //         duration: 3000,
-    //         ease: 'Power3'
-    //     });
-    // }
+                    // upload score
+                    let res = this.scene.httpGet("https://cors-anywhere.herokuapp.com/http://abf99d71.ngrok.io/set-score?name="+inputUsername.value+"&score="+this.scene.score);
+                    console.log(res);
+
+                    //  Turn off the click events
+                    this.removeListener('click');
+                    //  Tween the login form out
+                    this.scene.tweens.add({
+                        targets: element,
+                        y: config.height+200,
+                        duration: 2000,
+                        ease: 'Power3',
+                        onComplete: function ()
+                        {
+                            element.destroy();
+                        }
+                    });
+
+                    //  Populate the text with whatever they typed in as the username!
+                    //text.setText('Welcome ' + inputUsername.value);
+                }
+                else
+                {
+                    //  Flash the prompt
+                    inputUsername.value = 'guest';
+                    // Set leaderboard btn disable
+                    this.scene.uploaded = true;
+                    this.scene.rankBtn.setTexture("leaderboard_dis");
+                    this.scene.rankBtn.disableInteractive();
+
+                    // upload score
+                    res = this.scene.httpGet("https://cors-anywhere.herokuapp.com/http://abf99d71.ngrok.io/set-score?name="+inputUsername.value+"&score="+this.scene.score);
+                }
+            }
+        });
+        this.tweens.add({
+            targets: element,
+            y: 500,
+            duration: 3000,
+            ease: 'Power3'
+        });
+    }
+
+    httpGet(theUrl)
+    {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
 }

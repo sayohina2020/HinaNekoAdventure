@@ -18,6 +18,7 @@ var config = {
     width: 720,
     height: 1280,
     renderer: Phaser.CANVAS,
+    parent: 'game',
     backgroundColor: 0x000000,
     scene: [Preload, Title, Readme, GameScene, Ending],
     physics: {
@@ -26,6 +27,9 @@ var config = {
             debug: false,
             debugShowVelocity: false
         }
+    },
+    dom: {
+        createContainer: true
     }
 }
 

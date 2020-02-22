@@ -58,6 +58,9 @@ class Preload extends Phaser.Scene {
         this.load.audio("speedUp_SFX", "assets/sound/powerup03.ogg", "assets/sound/powerup03.mp3");
         this.load.audio("select", "assets/sound/cancel1.ogg", "assets/sound/cancel1.mp3");
         this.load.audio("bgm", "assets/sound/tam-n06loop.ogg", "assets/sound/tam-n06.mp3");
+
+        //upload score html
+        this.load.html("nameform", "loginform.html");
     }
 
     create() {
