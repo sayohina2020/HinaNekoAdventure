@@ -38,9 +38,9 @@ class Title extends Phaser.Scene {
         });
         
         // Start button
-        this.startBtn = this.add.sprite(config.width/2, config.height/2-130, "button").setOrigin(0.5, 0.5);
+        this.startBtn = this.add.sprite(config.width/2, config.height/2-180, "button").setOrigin(0.5, 0.5);
         this.startBtn.setInteractive();
-        this.startLable = this.add.text(config.width/2, config.height/2-120, 'START', {
+        this.startLable = this.add.text(config.width/2, config.height/2-170, 'START', {
             fontFamily: 'Flatwheat',
             fontSize: 50,
             align: 'center',
@@ -60,9 +60,9 @@ class Title extends Phaser.Scene {
         });
 
         // How to play button
-        this.readmeBtn = this.add.sprite(config.width/2, config.height/2+50, "button");
+        this.readmeBtn = this.add.sprite(config.width/2, config.height/2-30, "button");
         this.readmeBtn.setInteractive();
-        this.readmeLabel = this.add.text(config.width/2, config.height/2+63, 'HOW TO PLAY', {
+        this.readmeLabel = this.add.text(config.width/2, config.height/2-17, 'HOW TO PLAY', {
             fontFamily: 'Flatwheat',
             fontSize: 40,
             align: 'center',
@@ -79,6 +79,27 @@ class Title extends Phaser.Scene {
         this.readmeBtn.on('pointerup', () => {
             if(audioOn) this.buttonSFX.play();
             this.scene.start("readme");
+        });
+
+        // Leaderboard button
+        this.leaderBtn = this.add.sprite(config.width/2, config.height/2+120, "button");
+        this.leaderBtn.setInteractive();
+        this.leaderLabel = this.add.text(config.width/2, config.height/2+133, 'RANKING', {
+            fontFamily: 'Flatwheat',
+            fontSize: 40,
+            align: 'center',
+            color: '#3b6668'
+        }).setOrigin(0.5, 0.5);;
+        this.leaderBtn.on('pointerover', () => {
+            this.leaderBtn.setTexture("button_hover");
+            this.leaderLabel.setColor('#ffffff');
+        });
+        this.leaderBtn.on('pointerout', () => {
+            this.leaderBtn.setTexture("button");
+            this.leaderLabel.setColor('#3b6668');
+        });
+        this.leaderBtn.on('pointerup', () => {
+            window.open("leaderboard.html");
         });
 
 
