@@ -53,21 +53,22 @@ class Preload extends Phaser.Scene {
         this.load.image("openAudio", "assets/images/volume-up.png");
 
         // sounds
-        this.load.audio("good_SFX", "assets/sound/coin01.ogg", "assets/sound/coin01.mp3");
-        this.load.audio("bad_SFX", "assets/sound/powerdown01.ogg", "assets/sound/powerdown01.mp3");
-        this.load.audio("speedUp_SFX", "assets/sound/powerup03.ogg", "assets/sound/powerup03.mp3");
-        this.load.audio("select", "assets/sound/cancel1.ogg", "assets/sound/cancel1.mp3");
-        this.load.audio("bgm", "assets/sound/tam-n06loop.ogg", "assets/sound/tam-n06.mp3");
+        this.load.audio("good_SFX", "assets/sound/coin01.mp3");
+        this.load.audio("bad_SFX", "assets/sound/powerdown01.mp3");
+        this.load.audio("speedUp_SFX", "assets/sound/powerup03.mp3");
+        this.load.audio("select", "assets/sound/cancel1.mp3");
+        this.load.audio("bgm", "assets/sound/tam-n06.mp3");
 
         //upload score html
         this.load.html("nameform", "loginform.html");
     }
 
     create() {
+        
         bgmObj = this.sound.add("bgm");
 
         this.buttonSFX = this.sound.add("select");
-
+        
         this.btn = this.add.text(config.width/2,config.height/2-50,"PLAY", {
             fontFamily: 'Flatwheat',
             fontSize: 100,
@@ -85,8 +86,9 @@ class Preload extends Phaser.Scene {
             bgmObj.play({ loop: true, mute:!audioOn });
             if(audioOn) {
                 this.buttonSFX.play();
+                
             }
-            this.scene.launch("title"); 
+            this.scene.start("title");
         });
 
         audioOn = true;

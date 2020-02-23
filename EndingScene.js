@@ -1,6 +1,4 @@
-class Ending extends Phaser.Scene {
-
-    uploaded = false;
+class EndingScene extends Phaser.Scene {
 
     constructor() {
         super("ending");
@@ -11,18 +9,23 @@ class Ending extends Phaser.Scene {
             this.score = data.score;
         else
             this.score = 0;
-
-        
     }
 
     create() {
+        this.uploaded = false;
+
         // background
         this.background = this.add.image(0,0,"background");
         this.background.setOrigin(0,0);
         this.add.image(445, 980, "french-fries").angle = 5;
         this.add.image(395, 980, "french-fries").angle = 355;
         this.add.image(335, 980, "french-fries").angle = 350;
-        this.candy = [this.add.image(280, 990, "candy"), this.add.image(280, 1010, "candy"), this.add.image(325, 1010, "candy"), this.add.image(370, 1010, "candy")]
+        this.candy = [
+            this.add.image(280, 990, "candy"), 
+            this.add.image(280, 1010, "candy"), 
+            this.add.image(325, 1010, "candy"), 
+            this.add.image(370, 1010, "candy")
+        ];
         this.candy[0].angle = 180;
         this.candy[1].angle = 270;
         this.candy[2].angle = 200;
@@ -125,7 +128,7 @@ class Ending extends Phaser.Scene {
             if(audioOn) this.buttonSFX.play();
             this.showInputField(this);
         });
-        
+
         // social buttons
         this.fbBtn = this.add.image(config.width/2 - 100, 650, "fb");
         this.fbBtn.setInteractive();
@@ -183,16 +186,9 @@ class Ending extends Phaser.Scene {
             boundsAlignH: "center", 
             boundsAlignV: "middle"
         }).setOrigin(0.5, 0.5);
-
-    }
-
-    copyText(text) {
-        
-        
     }
 
     showInputField(scene) {
-        //var text = this.add.text(10, 10, 'Please login to play', { color: 'white', fontFamily: 'Arial', fontSize: '32px '});
         var element = scene.add.dom(config.width/2, -100).createFromCache("nameform");
         element.setPerspective(800);
         element.addListener('click');

@@ -20,7 +20,7 @@ var config = {
     renderer: Phaser.CANVAS,
     parent: 'game',
     backgroundColor: 0x000000,
-    scene: [Preload, Title, Readme, GameScene, Ending],
+    scene: [Preload, Title, Readme, GameScene, EndingScene],
     physics: {
         default: "arcade",
         arcade:{

@@ -1,4 +1,4 @@
-class Food extends Phaser.GameObjects.Sprite{
+class FoodItem extends Phaser.GameObjects.Sprite{
 
     speed = 200;
     type = "";

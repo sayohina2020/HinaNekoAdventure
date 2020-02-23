@@ -111,7 +111,12 @@ class GameScene extends Phaser.Scene {
         // Food fall down
         for(var i = 0; i<this.foods_instance.getChildren().length; i++) {
             var food = this.foods_instance.getChildren()[i];
-            food.update(this);
+            // food.update(this);
+            if(food.y > 1000)
+                food.destroy();
+            else {
+                food.body.velocity.y += 0.98 * 2;
+        }
         }
 
         // Text update
@@ -223,7 +228,22 @@ class GameScene extends Phaser.Scene {
     }
 
     item_tick() {
-        var food = new Food(this);
+        // Generate new food
+        let x = Phaser.Math.Between(40,690);
+        let y = 0;
+        let type = Phaser.Math.Between(0, gameSetting.food_type.length-1);
+        var food = this.add.image(x, y, gameSetting.food_type[type]);
+        food.type = type;
+        food.speed = 200;
+
+        this.add.existing(food);
+
+        this.physics.world.enableBody(food);
+        food.body.velocity.y = food.speed + (gameSetting.time - this.timeCountdown) / gameSetting.time * 300;
+
+        this.foods_instance.add(food);
+
+        // var food = new Food(this);
         let interval = 800 * (this.timeCountdown/120);
         interval = (interval < 3)? 3 : interval
         this.time.delayedCall(interval, this.item_tick, null, this);
