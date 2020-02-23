@@ -115,7 +115,7 @@ class EndingScene extends Phaser.Scene {
         }).setOrigin(0.5, 0.5);
 
         // Rank button
-        this.rankBtn = this.add.image(config.width/2-200, 650, "leaderboard-dis");
+        this.rankBtn = this.add.image(config.width/2-200, 650, "leaderboard_dis");
         //this.rankBtn.setInteractive();
         // this.rankBtn.on('pointerover', () => {
         //     this.rankBtn.setScale(1.2);
