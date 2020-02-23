@@ -13,7 +13,7 @@ class EndingScene extends Phaser.Scene {
 
     create() {
         this.uploaded = false;
-
+        this.uploadBtnClick = false;
         // background
         this.background = this.add.image(0,0,"background");
         this.background.setOrigin(0,0);
@@ -115,19 +115,20 @@ class EndingScene extends Phaser.Scene {
         }).setOrigin(0.5, 0.5);
 
         // Rank button
-        this.rankBtn = this.add.image(config.width/2-200, 650, "leaderboard_dis");
-        //this.rankBtn.setInteractive();
-        // this.rankBtn.on('pointerover', () => {
-        //     this.rankBtn.setScale(1.2);
-        // });
-        // this.rankBtn.on('pointerout', () => {
-        //     this.rankBtn.setScale(1.0);
-        // });
-        // this.rankBtn.on('pointerup', () => {
-        //     if(this.uploaded) return;
-        //     if(audioOn) this.buttonSFX.play();
-        //     this.showInputField(this);
-        // });
+        this.rankBtn = this.add.image(config.width/2-200, 650, "leaderboard");
+        this.rankBtn.setInteractive();
+        this.rankBtn.on('pointerover', () => {
+            this.rankBtn.setScale(1.2);
+        });
+        this.rankBtn.on('pointerout', () => {
+            this.rankBtn.setScale(1.0);
+        });
+        this.rankBtn.on('pointerup', () => {
+            if(this.uploadBtnClick) return;
+            this.uploadBtnClick = true;
+            if(audioOn) this.buttonSFX.play();
+            this.showInputField(this);
+        });
 
         // social buttons
         this.fbBtn = this.add.image(config.width/2 - 50, 650, "fb");
@@ -203,6 +204,7 @@ class EndingScene extends Phaser.Scene {
         element.setPerspective(800);
         element.addListener('click');
         element.on('click', function (event) {
+
             if (event.target.name === 'loginButton')
             {
                 var inputUsername = this.getChildByName('username');
@@ -210,7 +212,6 @@ class EndingScene extends Phaser.Scene {
                 if (inputUsername.value !== '')
                 {
                     // Set leaderboard btn disable
-                    this.scene.uploaded = true;
                     this.scene.rankBtn.setTexture("leaderboard_dis");
                     this.scene.rankBtn.disableInteractive();
 
