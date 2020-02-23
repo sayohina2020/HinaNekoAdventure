@@ -116,7 +116,7 @@ class GameScene extends Phaser.Scene {
                 food.destroy();
             else {
                 food.body.velocity.y += 0.98 * 2;
-        }
+            }
         }
 
         // Text update
