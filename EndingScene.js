@@ -115,19 +115,19 @@ class EndingScene extends Phaser.Scene {
         }).setOrigin(0.5, 0.5);
 
         // Rank button
-        this.rankBtn = this.add.image(config.width/2-200, 650, "leaderboard");
-        this.rankBtn.setInteractive();
-        this.rankBtn.on('pointerover', () => {
-            this.rankBtn.setScale(1.2);
-        });
-        this.rankBtn.on('pointerout', () => {
-            this.rankBtn.setScale(1.0);
-        });
-        this.rankBtn.on('pointerup', () => {
-            if(this.uploaded) return;
-            if(audioOn) this.buttonSFX.play();
-            this.showInputField(this);
-        });
+        this.rankBtn = this.add.image(config.width/2-200, 650, "leaderboard-dis");
+        //this.rankBtn.setInteractive();
+        // this.rankBtn.on('pointerover', () => {
+        //     this.rankBtn.setScale(1.2);
+        // });
+        // this.rankBtn.on('pointerout', () => {
+        //     this.rankBtn.setScale(1.0);
+        // });
+        // this.rankBtn.on('pointerup', () => {
+        //     if(this.uploaded) return;
+        //     if(audioOn) this.buttonSFX.play();
+        //     this.showInputField(this);
+        // });
 
         // social buttons
         this.fbBtn = this.add.image(config.width/2 - 50, 650, "fb");
