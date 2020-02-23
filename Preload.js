@@ -88,7 +88,7 @@ class Preload extends Phaser.Scene {
                 this.buttonSFX.play();
                 
             }
-            this.scene.start("title");
+            this.scene.start("ending");
         });
 
         audioOn = true;
