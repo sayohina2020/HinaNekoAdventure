@@ -12,8 +12,7 @@ class EndingScene extends Phaser.Scene {
     }
 
     create() {
-        this.uploaded = false;
-        this.uploadBtnClick = false;
+        
         // background
         this.background = this.add.image(0,0,"background");
         this.background.setOrigin(0,0);
@@ -114,24 +113,8 @@ class EndingScene extends Phaser.Scene {
             boundsAlignV: "middle"
         }).setOrigin(0.5, 0.5);
 
-        // Rank button
-        this.rankBtn = this.add.image(config.width/2-200, 650, "leaderboard");
-        this.rankBtn.setInteractive();
-        this.rankBtn.on('pointerover', () => {
-            this.rankBtn.setScale(1.2);
-        });
-        this.rankBtn.on('pointerout', () => {
-            this.rankBtn.setScale(1.0);
-        });
-        this.rankBtn.on('pointerup', () => {
-            if(this.uploadBtnClick) return;
-            this.uploadBtnClick = true;
-            if(audioOn) this.buttonSFX.play();
-            this.showInputField(this);
-        });
-
         // social buttons
-        this.fbBtn = this.add.image(config.width/2 - 50, 650, "fb");
+        this.fbBtn = this.add.image(config.width/2 - 150, 650, "fb");
         this.fbBtn.setInteractive();
         this.fbBtn.on('pointerover', () => {
             this.fbBtn.setScale(1.2);
@@ -143,7 +126,7 @@ class EndingScene extends Phaser.Scene {
             if(audioOn) this.buttonSFX.play();
             window.open("https://www.facebook.com/sharer/sharer.php?u=https://sayohina2020.github.io/HinaNekoAdventure/&quote=I%20got%20"+this.score+"%20points%20in%20Hina%20Neko's%20Adventure!" +encodeURIComponent("#氷川紗夜日菜生誕祭2020"), "_blank", "toolbar=0,status=0");
         });
-        this.twitterBtn = this.add.image(config.width/2+50, 650, "twitter");
+        this.twitterBtn = this.add.image(config.width/2-50, 650, "twitter");
         this.twitterBtn.setInteractive();
         this.twitterBtn.on('pointerover', () => {
             this.twitterBtn.setScale(1.2);
@@ -155,7 +138,7 @@ class EndingScene extends Phaser.Scene {
             if(audioOn) this.buttonSFX.play();
             window.open("https://twitter.com/intent/tweet?text=I%20got%20"+this.score+"%20points%20in%20Hina%20Neko's%20Adventure!"+encodeURIComponent('\nhttps://sayohina2020.github.io/HinaNekoAdventure/\n#氷川紗夜日菜生誕祭2020'), "_blank", "toolbar=0,status=0");
         });
-        this.plurkBtn = this.add.image(config.width/2 + 150, 650, "plurk");
+        this.plurkBtn = this.add.image(config.width/2 + 50, 650, "plurk");
         this.plurkBtn.setInteractive();
         this.plurkBtn.on('pointerover', () => {
             this.plurkBtn.setScale(1.2);
@@ -167,7 +150,7 @@ class EndingScene extends Phaser.Scene {
             if(audioOn) this.buttonSFX.play();
             window.open('http://www.plurk.com/m?qualifier=shares&content='.concat(encodeURIComponent('https://i.imgur.com/XY4Y38F.png\nhttps://sayohina2020.github.io/HinaNekoAdventure/')).concat(encodeURIComponent("\nI got "+this.score+" points in Hina neko's Adventure!\n#氷川紗夜日菜生誕祭2020")));
         });
-        this.weiboBtn = this.add.image(config.width/2 + 250, 650, "weibo");
+        this.weiboBtn = this.add.image(config.width/2 + 150, 650, "weibo");
         this.weiboBtn.setInteractive();
         this.weiboBtn.on('pointerover', () => {
             this.weiboBtn.setScale(1.2);
@@ -180,89 +163,14 @@ class EndingScene extends Phaser.Scene {
             var d=document,e=encodeURIComponent,s1=window.getSelection,s2=d.getSelection,s3=d.selection,s=s1?s1():s2?s2():s3?s3.createRange().text:'',r='http://service.weibo.com/share/share.php?url='+'https://sayohina2020.github.io/HinaNekoAdventure/'+'&title=I got '+this.score+' points in Hina neko\'s Adventure! '.concat(encodeURIComponent('#氷川紗夜日菜生誕祭2020')),x=function(){if(!window.open(r,'weibo','toolbar=0,resizable=1,scrollbars=yes,status=1,width=450,height=330'))location.href=r+'&r=1'};if(/Firefox/.test(navigator.userAgent)){setTimeout(x,0)}else{x()};
         });
 
-        this.UploadLabel = this.add.text(config.width/2-250, 580, 'UPLOAD', {
+        this.shareLabel = this.add.text(config.width/2, 580, 'SHARE', {
             fontFamily: 'Flatwheat',
             fontSize: 30,
             align: 'center',
             color: '#3b6668',
             boundsAlignH: "center", 
             boundsAlignV: "middle"
-        }).setOrigin(0, 0.5);
-
-        this.shareLabel = this.add.text(config.width/2+50, 580, 'SHARE', {
-            fontFamily: 'Flatwheat',
-            fontSize: 30,
-            align: 'center',
-            color: '#3b6668',
-            boundsAlignH: "center", 
-            boundsAlignV: "middle"
-        }).setOrigin(0, 0.5);
+        }).setOrigin(0.5, 0.5);
     }
 
-    showInputField(scene) {
-        var element = scene.add.dom(config.width/2, -100).createFromCache("nameform");
-        element.setPerspective(800);
-        element.addListener('click');
-        element.on('click', function (event) {
-
-            if (event.target.name === 'loginButton')
-            {
-                var inputUsername = this.getChildByName('username');
-                //  Have they entered anything?
-                if (inputUsername.value !== '')
-                {
-                    // Set leaderboard btn disable
-                    this.scene.rankBtn.setTexture("leaderboard_dis");
-                    this.scene.rankBtn.disableInteractive();
-
-                    // upload score
-                    let res = this.scene.httpGet("https://cors-anywhere.herokuapp.com/http://abf99d71.ngrok.io/set-score?name="+inputUsername.value+"&score="+this.scene.score);
-                    console.log(res);
-
-                    //  Turn off the click events
-                    this.removeListener('click');
-                    //  Tween the login form out
-                    this.scene.tweens.add({
-                        targets: element,
-                        y: config.height+200,
-                        duration: 2000,
-                        ease: 'Power3',
-                        onComplete: function ()
-                        {
-                            element.destroy();
-                        }
-                    });
-
-                    //  Populate the text with whatever they typed in as the username!
-                    //text.setText('Welcome ' + inputUsername.value);
-                }
-                else
-                {
-                    //  Flash the prompt
-                    inputUsername.value = 'guest';
-                    // Set leaderboard btn disable
-                    this.scene.uploaded = true;
-                    this.scene.rankBtn.setTexture("leaderboard_dis");
-                    this.scene.rankBtn.disableInteractive();
-
-                    // upload score
-                    res = this.scene.httpGet("https://cors-anywhere.herokuapp.com/http://abf99d71.ngrok.io/set-score?name="+inputUsername.value+"&score="+this.scene.score);
-                }
-            }
-        });
-        this.tweens.add({
-            targets: element,
-            y: 500,
-            duration: 3000,
-            ease: 'Power3'
-        });
-    }
-
-    httpGet(theUrl)
-    {
-        var xmlHttp = new XMLHttpRequest();
-        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-        xmlHttp.send( null );
-        return xmlHttp.responseText;
-    }
 }
