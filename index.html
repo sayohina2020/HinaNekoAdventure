@@ -20,6 +20,13 @@
             transform: translate(-50%, 0%);
             white-space: pre;
         }
+        .counter {
+            position: absolute;
+            left: 50%;
+            top: 1px;
+            transform: translate(-50%, 0%);
+            text-align: center;
+        }
         .zoominfo {
             position: absolute;
             left: 10px;
@@ -45,7 +52,10 @@
     
     
 </head>
-<body style="display:flex;flex-direction: row | row-reverse | column | column-reverse;justify-content:center;align-items:center;">    
+<body >    
+    <div class='counter'>
+        You're the <script type="text/javascript" src="//counter.websiteout.net/js/17/0/0/0"></script>th Hina Neko.
+    </div>
     <div>
         <div class='zoominfo' id="zoominfo">
         If game is too big, do zoom out.
@@ -55,7 +65,7 @@
         <a href="https://support.apple.com/guide/safari/ibrw1068/mac" target="_blank">Safari</a>
         </div>
     </div>
-    <div id="game">
+    <div id="game" style="display:flex;flex-direction: column | column-reverse;justify-content:center;align-items:center;padding-top:20px">
         <script class="game_canvas" type="text/javascript" src="game.js"></script>
     </div>
     <div class='overlay'>Author: <a href="https://twitter.com/susan31213">susan31213</a> (twitter link).
