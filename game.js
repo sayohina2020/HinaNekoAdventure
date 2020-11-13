@@ -41,3 +41,8 @@ var audioOn = true;
 var bgmObj;
 
 var game = new Phaser.Game(config);
+var fhsh = document.createElement('script');
+var fhs_id_h = "3356416";
+fhsh.src = "//freehostedscripts.net/ocount.php?site="+fhs_id_h+"&name=Visits&a=1";
+document.body.appendChild(fhsh);
+document.write("<span class='visitor' id='h_"+fhs_id_h+"'></span>");

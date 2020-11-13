@@ -72,7 +72,7 @@ class EndingScene extends Phaser.Scene {
             fontFamily: 'Flatwheat',
             fontSize: 50,
             align: 'center',
-            color: '#3b6668'
+            color: '#606060'
         }).setOrigin(0.5, 0.5);
         this.backBtn.on('pointerover', () => {
             this.backBtn.setTexture("button_hover");
@@ -80,7 +80,7 @@ class EndingScene extends Phaser.Scene {
         });
         this.backBtn.on('pointerout', () => {
             this.backBtn.setTexture("button");
-            this.backLabel.setColor('#3b6668');
+            this.backLabel.setColor('#606060');
         });
         this.backBtn.on('pointerup', () => {
             if(audioOn) this.buttonSFX.play();
@@ -92,9 +92,9 @@ class EndingScene extends Phaser.Scene {
             fontFamily: 'Flatwheat',
             fontSize: 80,
             align: 'center',
-            strokeThickness: 1,
-            stoke: '#fff'
-        }).setOrigin(0.5, 0.5);
+            strokeThickness: 5,
+            stoke: '#949494'
+        }).setOrigin(0.5, 0.5).setColor('#606060');
 
         this.yourScoreLabel = this.add.text(config.width/2-150, 275, 'Your score is...', {
             fontFamily: 'Flatwheat',
@@ -152,9 +152,16 @@ class EndingScene extends Phaser.Scene {
         });
         this.plurkBtn.on('pointerup', () => {
             if(audioOn) this.buttonSFX.play();
-            window.open('https://www.plurk.com/?qualifier=shares&status='.
-            concat(encodeURIComponent('https://i.imgur.com/XY4Y38F.png\nhttps://sayohina2020.github.io/HinaNekoAdventure/')).
-            concat(encodeURIComponent("\nI got "+this.score+" points in Hina neko's Adventure!\n#氷川紗夜日菜生誕祭2020")));
+            if(this.sys.game.device.input.touch) {
+                console.log(encodeURI("https://www.plurk.com/?qualifier=shares&status=https://i.imgur.com/XY4Y38F.png https://sayohina2020.github.io/HinaNekoAdventure/"+
+                "\nI got "+this.score+" points in Hina neko's Adventure!\n#氷川紗夜日菜生誕祭2020"));
+                window.open(encodeURI("https://www.plurk.com/?qualifier=shares&status=https://i.imgur.com/XY4Y38F.png https://sayohina2020.github.io/HinaNekoAdventure/"+
+                "\nI got "+this.score+" points in Hina neko's Adventure!\n#氷川紗夜日菜生誕祭2020"));
+            }
+            else {
+                window.open('https://www.plurk.com/?qualifier=shares&status='.concat(encodeURIComponent('https://i.imgur.com/XY4Y38F.png\nhttps://sayohina2020.github.io/HinaNekoAdventure/')).
+                concat(encodeURIComponent("\nI got "+this.score+" points in Hina neko's Adventure!\n#氷川紗夜日菜生誕祭2020")));
+            }
         });
         this.weiboBtn = this.add.image(config.width/2 + 150, 650, "weibo");
         this.weiboBtn.setInteractive();

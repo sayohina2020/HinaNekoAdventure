@@ -5,7 +5,6 @@ class Title extends Phaser.Scene {
     }
 
     create() {
-
         // background
         this.background = this.add.image(0,0,"background");
         this.background.setOrigin(0,0);
@@ -44,7 +43,7 @@ class Title extends Phaser.Scene {
             fontFamily: 'Flatwheat',
             fontSize: 50,
             align: 'center',
-            color: '#3b6668'
+            color: '#606060'
         }).setOrigin(0.5, 0.5);
         this.startBtn.on('pointerover', () => {
             this.startBtn.setTexture("button_hover");
@@ -52,7 +51,7 @@ class Title extends Phaser.Scene {
         });
         this.startBtn.on('pointerout', () => {
             this.startBtn.setTexture("button");
-            this.startLable.setColor('#3b6668');
+            this.startLable.setColor('#606060');
         });
         this.startBtn.on('pointerup', () => {
             if(audioOn) this.buttonSFX.play();
@@ -66,7 +65,7 @@ class Title extends Phaser.Scene {
             fontFamily: 'Flatwheat',
             fontSize: 40,
             align: 'center',
-            color: '#3b6668'
+            color: '#606060'
         }).setOrigin(0.5, 0.5);;
         this.readmeBtn.on('pointerover', () => {
             this.readmeBtn.setTexture("button_hover");
@@ -74,7 +73,7 @@ class Title extends Phaser.Scene {
         });
         this.readmeBtn.on('pointerout', () => {
             this.readmeBtn.setTexture("button");
-            this.readmeLabel.setColor('#3b6668');
+            this.readmeLabel.setColor('#606060');
         });
         this.readmeBtn.on('pointerup', () => {
             if(audioOn) this.buttonSFX.play();
@@ -86,9 +85,9 @@ class Title extends Phaser.Scene {
             fontFamily: 'Flatwheat',
             fontSize: 100,
             align: 'center',
-            strokeThickness: 1,
-            stoke: '#fff',
+            strokeThickness: 5,
+            stoke: '#949494',
             boundsAlignH: "center"
-        }).setOrigin(0.5, 0.5);;
+        }).setOrigin(0.5, 0.5).setColor('#606060');
     }
 }

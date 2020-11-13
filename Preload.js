@@ -63,6 +63,16 @@ class Preload extends Phaser.Scene {
     }
 
     create() {
+        let spanTag = document.getElementsByTagName('span')[0];
+        var visitor = spanTag.getElementsByTagName('a')[0].innerHTML;
+        spanTag.remove();
+
+        this.add.text(10, 25, "You are Jam No. " + visitor.split(' ')[0], {
+            fontFamily: 'Flatwheat',
+            fontSize: 40,
+            align: 'center',
+            color: '#3b6668',
+        }).setOrigin(0, 0.5);
         
         bgmObj = this.sound.add("bgm");
 

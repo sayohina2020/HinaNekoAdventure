@@ -10,22 +10,31 @@
         .overlay {
             left: 50%;
             width: 100%;
-            background: white;
             text-align: center;  
             vertical-align:auto;
             white-space: pre;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .visitor {
+            position: absolute;
+            left: 0%;
+            top: 100%;
+            left: 50%;
+            visibility: hidden;
         }
         .counter {
             left: 50%;
             top: 3px;
             text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .inactiveLink {
             pointer-events: none;
             cursor: default;
         }
-        body { font-size: 16px; }
+        body { font-size: 16px; background-image: url('assets/images/background.png'); }
         input, select { font-size: 100%; }
+        
     </style>
     <div style="font-family:Flatwheat; position: absolute; left:-1000px; visibility:hidden;">.</div>
     <script type="text/javascript" src="phaser.min.js"></script>
@@ -36,19 +45,18 @@
     <script type="text/javascript" src="Title.js"></script>
     <script type="text/javascript" src="Readme.js"></script>
 </head>
-<body >
-    <div class='counter'>
+<body>
+    <!-- <div class='counter'>
         You're the JAM no.<a href="https://www.webfreecounter.com/" target="_blank" class='inactiveLink'><img src="https://www.webfreecounter.com/hit.php?id=gvmmkakod&nd=6&style=1" border="0" alt="hit counter"></a>!
-    </div>
+    </div> -->
     <div id="game" style='text-align: center;'>
         
         <script class="game_canvas" type="text/javascript" src="game.js"></script>
     </div>
-    <div class='overlay'>Author: <a href="https://twitter.com/susan31213">susan31213</a> (twitter link).
-Font file Flatwheat by <a href="https://www.creativefabrica.com/designer/heath/">FlatWheat Studios</a>.
+    <div class='overlay'>Font file Flatwheat by <a href="https://www.creativefabrica.com/designer/heath/">FlatWheat Studios</a>.
 Bgm "散歩道" and button SFX is from <a href="https://www.tam-music.com">TAM Music Factory</a>.
 SFXs are made by <a href="https://taira-komori.jpn.org/freesoundtw.html">小森平</a>
 Thanks for these fantastic works!
-If any question, please tell me by twitter message. :)</div>
+If any question, please send message to this <a href="mailto:susan31213@gmail.com">email</a>. :)</div>
 </body>
 </html>

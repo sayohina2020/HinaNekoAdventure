@@ -66,7 +66,7 @@ class GameScene extends Phaser.Scene {
         this.timeLabel = this.add.text(60, 15, '120 sec', {
             fontFamily: 'Flatwheat',
             fontSize: 40
-        });
+        }).setColor('#606060');
         this.timeLabel.setDepth(1);
         this.time.addEvent({ delay: 1000, callback: this.timeCountdownTick, callbackScope: this, loop: true});
 
@@ -74,7 +74,7 @@ class GameScene extends Phaser.Scene {
         this.scoreLabel = this.add.text(60, 65, '0 pt', {
             fontFamily: 'Flatwheat',
             fontSize: 40
-        });
+        }).setColor('#606060');
         this.scoreLabel.setDepth(1);
 
 
