@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+        @font-face {
+            font-family: 'Flatwheat';
+            src: url('assets/font/Flatwheat-Upright.ttf');
+        }
+        .overlay {
+            left: 50%;
+            width: 100%;
+            background: white;
+            text-align: center;  
+            vertical-align:auto;
+            white-space: pre;
+        }
+        .counter {
+            left: 50%;
+            top: 3px;
+            text-align: center;
+        }
+        .inactiveLink {
+            pointer-events: none;
+            cursor: default;
+        }
+        body { font-size: 16px; }
+        input, select { font-size: 100%; }
+    </style>
+    <div style="font-family:Flatwheat; position: absolute; left:-1000px; visibility:hidden;">.</div>
+    <script type="text/javascript" src="phaser.min.js"></script>
+    <script type="text/javascript" src="SpeedUp.js"></script>
+    <script type="text/javascript" src="Preload.js"></script>
+    <script type="text/javascript" src="GameScene.js"></script>
+    <script type="text/javascript" src="EndingScene.js"></script>
+    <script type="text/javascript" src="Title.js"></script>
+    <script type="text/javascript" src="Readme.js"></script>
+</head>
+<body >
+    <div class='counter'>
+        You're the JAM no.<a href="https://www.webfreecounter.com/" target="_blank" class='inactiveLink'><img src="https://www.webfreecounter.com/hit.php?id=gvmmkakod&nd=6&style=1" border="0" alt="hit counter"></a>!
+    </div>
+    <div id="game" style='text-align: center;'>
+        
+        <script class="game_canvas" type="text/javascript" src="game.js"></script>
+    </div>
+    <div class='overlay'>Author: <a href="https://twitter.com/susan31213">susan31213</a> (twitter link).
+Font file Flatwheat by <a href="https://www.creativefabrica.com/designer/heath/">FlatWheat Studios</a>.
+Bgm "散歩道" and button SFX is from <a href="https://www.tam-music.com">TAM Music Factory</a>.
+SFXs are made by <a href="https://taira-komori.jpn.org/freesoundtw.html">小森平</a>
+Thanks for these fantastic works!
+If any question, please tell me by twitter message. :)</div>
+</body>
+</html>
