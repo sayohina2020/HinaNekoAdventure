@@ -2,6 +2,8 @@ class GameScene extends Phaser.Scene {
 
     playerIdleTimer = 0;
     playerIdleTimerDelta = 0.05;
+    foodIdleTimer = 0;
+    foodIdleTimerDelta = 0.01;
     scoreText = []
 
     constructor() {
@@ -46,6 +48,15 @@ class GameScene extends Phaser.Scene {
         });
 
         // SFX
+        this.footstepSFX = this.sound.add("footstep", {
+            loop: true
+        });
+        this.footstepSFX.play();
+        let gameScene = this;
+        this.footstepSFX.on('stop', function(music) {
+            gameScene.scene.start("ending", {score: gameScene.score});
+        });
+
         this.goodSFX = this.sound.add("good_SFX");
         this.badSFX = this.sound.add("bad_SFX");
         this.speedUpSFX = this.sound.add("speedUp_SFX");
@@ -106,14 +117,17 @@ class GameScene extends Phaser.Scene {
 
         // check game over
         if(this.timeCountdown <= 0) {
-            this.scene.start("ending", {score: this.score});
+            this.footstepSFX.stop("footstep");
         }
 
         // Player move
         this.movePlayerManager();
 
         // Player idle Anim
-        this.playerIdleAnim(time);
+        this.playerIdleAnim();
+
+        // Footstep SFX
+        this.playFootstepSFX();
 
         // Food fall down
         for(var i = 0; i<this.foods_instance.getChildren().length; i++) {
@@ -125,6 +139,9 @@ class GameScene extends Phaser.Scene {
                 food.body.velocity.y += 0.98 * 2;
             }
         }
+
+        // Foods swing Anim
+        this.playFoodsAnim();
 
         // Text update
         this.timeLabel.text = this.timeCountdown + " sec";
@@ -138,6 +155,7 @@ class GameScene extends Phaser.Scene {
                 this.playerSpeed = gameSetting.playerInitSpeed;
                 this.player.anims.play("neko_anim");
                 this.player.anims.msPerFrame = 200;
+                this.footstepSFX.setRate(1.0);
             }
         }
     }
@@ -352,7 +370,8 @@ class GameScene extends Phaser.Scene {
         this.powerfulTimer = gameSetting.playerPowerfulTime_max;
         this.playerSpeed *= 2;
         this.player.anims.play("fireneko_anim");
-        this.player.anims.msPerFrame = 30000 / this.playerSpeed;
+        this.player.anims.msPerFrame = 10000 / this.playerSpeed;
+        this.footstepSFX.setRate(2.0);
         powerUp.disableBody(true, true);
         this.scoreText.push(this.add.text(player.x-60, player.y-100, 'S', {
             fontFamily: 'Flatwheat',
@@ -405,7 +424,7 @@ class GameScene extends Phaser.Scene {
         });
     }
 
-    playerIdleAnim(t)
+    playerIdleAnim()
     {
         if(this.player.alpha < 1) return;
         if(this.player.body.velocity.x != 0) return;
@@ -426,9 +445,43 @@ class GameScene extends Phaser.Scene {
         this.player.y = Phaser.Math.Interpolation.SmoothStep(this.playerIdleTimer, 940, 950);
     }
 
+    gt = 0;
+    playFoodsAnim()
+    {
+        console.log(this.gt += 1);
+        for(var i = 0; i<this.foods_instance.getChildren().length; i++) {
+            if(this.foodIdleTimerDelta > 0 && this.foodIdleTimer > 1)
+            {
+                this.foodIdleTimerDelta *= -1;
+                this.foodIdleTimer = 1;
+            }
+            else if(this.foodIdleTimerDelta < 0 && this.foodIdleTimer < 0)
+            {
+                this.foodIdleTimerDelta *= -1;
+                this.foodIdleTimer = 0;
+            }
+            else {
+                this.foodIdleTimer += this.foodIdleTimerDelta * 1;
+            }
+            this.foods_instance.getChildren()[i].angle = Phaser.Math.Interpolation.SmoothStep(this.foodIdleTimer, -5, 5);
+        }
+    }
+
+    playFootstepSFX()
+    {
+        this.footstepSFX.setMute(!audioOn);
+        if(this.player.body.velocity.x != 0)
+        {
+            this.footstepSFX.resume();
+        }
+        else
+        {
+            this.footstepSFX.pause();
+        }
+    }
+
     endGame() {
         this.input.keyboard.shutdown();
-
     }
 }
 

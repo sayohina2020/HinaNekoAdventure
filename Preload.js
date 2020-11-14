@@ -52,6 +52,7 @@ class Preload extends Phaser.Scene {
         this.load.image("openAudio", "assets/images/volume-up.png");
 
         // sounds
+        this.load.audio("footstep", "assets/sound/footstep.mp3")
         this.load.audio("good_SFX", "assets/sound/coin01.mp3");
         this.load.audio("bad_SFX", "assets/sound/powerdown01.mp3");
         this.load.audio("speedUp_SFX", "assets/sound/powerup03.mp3");
@@ -67,7 +68,7 @@ class Preload extends Phaser.Scene {
         var visitor = spanTag.getElementsByTagName('a')[0].innerHTML;
         spanTag.remove();
 
-        this.add.text(10, 25, "You are Jam No. " + visitor.split(' ')[0], {
+        this.add.text(10, 25, "You are JAM no. " + visitor.split(' ')[0] + " here!", {
             fontFamily: 'Flatwheat',
             fontSize: 40,
             align: 'center',
